@@ -1,0 +1,25 @@
+* filebot-nix
+  A nix expression for installing filebot
+* TODOs
+** TODO dependencies
+   - java of some sort
+     nativeBuildInputs? i think so
+     but that's for build and runtime? probably not worth fretting about
+   - javafx/openjfx?
+   reference https://aur.archlinux.org/packages/filebot/
+   - how to do data dir?
+     patch the shit out of the filebot script?
+     theirs is much simpler
+     https://aur.archlinux.org/cgit/aur.git/tree/filebot-arch.sh?h=filebot
+
+   pkgs needed:
+   - javafx still needed?
+     java.lang.NoClassDefFoundError: javafx/embed/swing/JFXPanel
+
+   maybe use this?
+   https://github.com/NixOS/nixpkgs/blob/62d86db572901a960838d4d5acadc039b207cfef/pkgs/servers/search/elasticsearch/6.x.nix#L57
+   uses jre_headless. maybe we use makewrapper? don't use propagated?
+
+   https://nixos.wiki/wiki/Nixpkgs/Create_and_debug_packages#Using_nix-shell_for_package_development
+
+   https://www.filebot.net/forums/viewtopic.php?t=4116
