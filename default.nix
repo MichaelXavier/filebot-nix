@@ -48,25 +48,14 @@ stdenv.mkDerivation rec {
   sourceRoot = ".";
 
   installPhase = ''
-    #TODO: drop lots of this
-    set -x
-    pwd
-    ls -lah
-    ls -lah ${src}
-    mkdir -p $out/bin
-    #TODO: is this adviseable? i'm not sure if you're "allowed" to write data to the derivation dir
     mkdir -p $out/bin/data
     rm filebot.sh
     cp ${./filebot.sh} filebot
-    mv reinstall-filebot.sh reinstall-filebot
-    mv update-filebot.sh update-filebot
-    cp -R * $out/bin
-    for bin in $out/bin/{filebot,reinstall-filebot,update-filebot}; do
-      chmod +x $bin
-      wrapProgram $bin \
-        --prefix PATH : "${stdenv.lib.makeBinPath [ pkgs.jre_headless ]}" \
-        --set JAVA_HOME "${pkgs.jre_headless}"
-    done
-    set +x
+    rm -f reinstall-filebot.sh update-filebot.sh
+    cp -R jar lib filebot $out/bin
+    chmod +x $out/bin/filebot
+    wrapProgram $out/bin/filebot \
+      --prefix PATH : "${stdenv.lib.makeBinPath [ pkgs.jre_headless ]}" \
+      --set JAVA_HOME "${pkgs.jre_headless}"
   '';
 }
