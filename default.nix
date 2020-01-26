@@ -2,10 +2,7 @@
 , fetchurl
 , pkgs
 }:
-#TODO: runtime deps for java and such
-# APP_DATA?
 
-#TODO: check if this is idiomatic
 let
   version = "4.8.5";
 
@@ -28,21 +25,7 @@ stdenv.mkDerivation rec {
     pkgs.libzen
     pkgs.jre_headless
     pkgs.makeWrapper
-    #TODO: drop these?
-    pkgs.coreutils
-    pkgs.which
   ];
-
-  #TODO: this isn't done in https://github.com/NixOS/nixpkgs/blob/62d86db572901a960838d4d5acadc039b207cfef/pkgs/servers/search/elasticsearch/6.x.nix#L57
-  # deps from here, missing some https://aur.archlinux.org/packages/filebot/
-  # propagatedBuldInputs = [
-  #   pkgs.chromaprint
-  #   pkgs.fontconfig
-  #   pkgs.openjfx12 # not there for some reason?
-  #   pkgs.libmediainfo
-  #   pkgs.libzen
-  #   pkgs.jre_headless
-  # ];
 
   # don't cd away
   sourceRoot = ".";
