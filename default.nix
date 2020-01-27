@@ -20,15 +20,18 @@ stdenv.mkDerivation rec {
   buildInputs = [
     pkgs.chromaprint
     pkgs.fontconfig
-    pkgs.openjfx12 # not there for some reason?
+    pkgs.openjfx12
     pkgs.libmediainfo
     pkgs.libzen
     pkgs.jre_headless
     pkgs.makeWrapper
   ];
 
-  # don't cd away
-  sourceRoot = ".";
+  unpackPhase = ''
+    mkdir source
+    cd source
+    tar xf $src
+  '';
 
   installPhase = ''
     mkdir -p $out/bin/data
