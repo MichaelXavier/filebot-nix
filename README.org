@@ -1,4 +1,4 @@
 * filebot-nix
   A nix expression for installing filebot
 * TODOs
-  Seem to be working?
+** TODO Submit to NUR
