@@ -4,11 +4,11 @@
 }:
 
 let
-  version = "4.8.5";
+  version = "4.9.0";
 
   tarball = fetchurl {
     url    = "https://get.filebot.net/filebot/FileBot_${version}/FileBot_${version}-portable.tar.xz";
-    sha256 = "1c2a97rkv57cvy4arnmw9f3zdvxwb5zfvr9iqgpn9rkda00f2hy8";
+    sha256 = "0ymv28z14igfl0jrm84204vxvbb1f8dfvqcp20dj3k4rdbz1qg85";
   };
 in
 stdenv.mkDerivation rec {
@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     pkgs.chromaprint
     pkgs.fontconfig
-    pkgs.openjfx12
+    pkgs.openjfx13
     pkgs.libmediainfo
     pkgs.libzen
     pkgs.jre_headless
