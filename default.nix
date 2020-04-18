@@ -1,17 +1,17 @@
-{ stdenv
-, fetchurl
-, pkgs
+{ pkgs ? import <nixpkgs> {}
 }:
 
 let
-  version = "4.9.0";
+  version = "4.9.1";
 
-  tarball = fetchurl {
+  tarball = pkgs.fetchurl {
     url    = "https://get.filebot.net/filebot/FileBot_${version}/FileBot_${version}-portable.tar.xz";
-    sha256 = "0ymv28z14igfl0jrm84204vxvbb1f8dfvqcp20dj3k4rdbz1qg85";
+    sha256 = "0l496cz703mjymjhgmyrkqbfld1bz53pdsbkx00h9a267j22fkms";
   };
+
+  jre = pkgs.openjdk12_headless;
 in
-stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation rec {
   name    = "filebot-${version}";
   inherit version;
 
@@ -20,14 +20,14 @@ stdenv.mkDerivation rec {
   buildInputs = [
     pkgs.chromaprint
     pkgs.fontconfig
-    pkgs.openjfx13
+    pkgs.openjfx11
     pkgs.libmediainfo
     pkgs.libzen
-    pkgs.jre_headless
+    jre
     pkgs.makeWrapper
   ];
 
-  unpackPhase = ''
+ unpackPhase = ''
     mkdir source
     cd source
     tar xf $src
@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
     cp -R jar lib filebot $out/bin
     chmod +x $out/bin/filebot
     wrapProgram $out/bin/filebot \
-      --prefix PATH : "${stdenv.lib.makeBinPath [ pkgs.jre_headless ]}" \
-      --set JAVA_HOME "${pkgs.jre_headless}"
+      --prefix PATH : "${pkgs.stdenv.lib.makeBinPath [ jre ]}" \
+      --set JAVA_HOME "${jre}"
   '';
 }
