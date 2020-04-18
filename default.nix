@@ -9,7 +9,7 @@ let
     sha256 = "0l496cz703mjymjhgmyrkqbfld1bz53pdsbkx00h9a267j22fkms";
   };
 
-  jre = pkgs.openjdk12_headless;
+  jre = pkgs.openjdk11_headless;
 in
 pkgs.stdenv.mkDerivation rec {
   name    = "filebot-${version}";
@@ -20,7 +20,6 @@ pkgs.stdenv.mkDerivation rec {
   buildInputs = [
     pkgs.chromaprint
     pkgs.fontconfig
-    pkgs.openjfx11
     pkgs.libmediainfo
     pkgs.libzen
     jre
