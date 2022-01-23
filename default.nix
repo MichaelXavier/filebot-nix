@@ -1,12 +1,12 @@
 { pkgs ? import <nixpkgs> { } }:
 
 let
-  version = "4.9.1";
+  version = "4.9.4";
 
   tarball = pkgs.fetchurl {
     url =
       "https://get.filebot.net/filebot/FileBot_${version}/FileBot_${version}-portable.tar.xz";
-    sha256 = "0l496cz703mjymjhgmyrkqbfld1bz53pdsbkx00h9a267j22fkms";
+    sha256 = "fz0B9P/UBrlKGPZkheMd/4cFnWHt+brS3zRTv4nVt9o=";
   };
 
   jre = pkgs.openjdk11_headless;
