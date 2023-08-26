@@ -2,3 +2,4 @@
   A nix expression for installing filebot
 * TODOs
 ** TODO Submit to NUR
+** TODO flake

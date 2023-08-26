@@ -1,16 +1,17 @@
 { pkgs ? import <nixpkgs> { } }:
 
 let
-  version = "4.9.4";
+  version = "5.0.3";
 
   tarball = pkgs.fetchurl {
     url =
       "https://get.filebot.net/filebot/FileBot_${version}/FileBot_${version}-portable.tar.xz";
-    sha256 = "fz0B9P/UBrlKGPZkheMd/4cFnWHt+brS3zRTv4nVt9o=";
+    sha256 = "sha256-8FTmR+ztR2ugPcgHvfwyh9yfxPiUJdeAVvjjl5cQCy0=";
   };
 
   jre = pkgs.openjdk11_headless;
-in pkgs.stdenv.mkDerivation rec {
+in
+pkgs.stdenv.mkDerivation rec {
   name = "filebot-${version}";
   inherit version;
 
